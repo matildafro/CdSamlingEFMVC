@@ -1,0 +1,41 @@
+﻿@model CdSamling.Models.Rent
+
+@{
+    ViewData["Title"] = "Radera";
+}
+
+
+
+<h3>Är du säker på att vald utlåning ska raderas??</h3>
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RentByName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RentByName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RentdDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RentdDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Collection)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Collection.Title)
+        </dd>
+    </dl>
+    <br />
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Radera" class="btn btn-danger" /> |
+     
+        <a class="text-dark" asp-action="Index">Tillbaka till listan</a>
+    </form>
+</div>

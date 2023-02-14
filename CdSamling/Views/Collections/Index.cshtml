@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CdSamling.Models.Collection>
+
+@{
+    ViewData["Title"] = "CD-samling";
+}
+
+<h1>CD-samling</h1>
+
+<p>
+    <a class="btn btn-warning" asp-action="Create">Lägg till ny CD</a>
+</p>
+
+<form asp-controller="Collections" asp-action="Index">
+    <p>
+        Sök efter skiva: <input type="text" name="SearchString" />
+        <input type="submit" value="Sök" class="btn btn-info" /> | <a class="text-dark" asp-action="Index">Visa alla</a>
+    </p>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Release)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Artist)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Release)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artist.Name)
+            </td>
+            <td>
+                    <a class="btn btn-primary text-light" asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                    <a class="btn btn-success text-light" asp-action="Details" asp-route-id="@item.Id">Detaljer</a> |
+                    <a class="btn btn-danger text-light" asp-action="Delete" asp-route-id="@item.Id">Radera</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

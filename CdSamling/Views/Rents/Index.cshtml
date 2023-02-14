@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CdSamling.Models.Rent>
+
+@{
+    ViewData["Title"] = "Utlånade";
+}
+
+<h1>Utlånade CD-skivor</h1>
+
+<p>
+    <a class="btn btn-warning" asp-action="Create">Ny utlåning</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RentByName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RentdDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Collection)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentByName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentdDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Collection.Title)
+            </td>
+            <td>
+                    <a class="btn btn-primary text-light" asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                    <a class="btn btn-success text-light" asp-action="Details" asp-route-id="@item.Id">Detaljer</a> |
+                    <a class="btn btn-danger text-light" asp-action="Delete" asp-route-id="@item.Id">Radera</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
